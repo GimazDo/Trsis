@@ -1,21 +1,22 @@
-package ru.desyatova.trsis.lab2.dao;
+package ru.desyatova.trsis.lab2.services.impl;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.desyatova.trsis.lab2.entity.Rent;
 import ru.desyatova.trsis.lab2.enums.RentStatus;
 import ru.desyatova.trsis.lab2.exceptions.DuplicateRentException;
 import ru.desyatova.trsis.lab2.exceptions.NotFoundException;
+import ru.desyatova.trsis.lab2.services.RentService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static ru.desyatova.trsis.lab2.exceptions.DuplicateRentException.ALREADY_EXISTS;
 import static ru.desyatova.trsis.lab2.exceptions.NotFoundException.RENT_NOT_FOUND;
 
-@Component
-public class RentDao {
+@Service
+public class RentServiceImpl implements RentService {
 
     private static final List<Rent> rents = new ArrayList<>();
 
