@@ -20,9 +20,15 @@
 
 </head>
 <body ng-app="rents" ng-controller="RentController">
-<h1 align="center">Аренда квартир</h1> <br>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Аренда квартир</h5>
+    <a sec:authorize="isAnonymous()" class="btn btn-outline-primary" href="/login">Sign up</a>
+    <form sec:authorize="isAuthenticated()" name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit"  class="btn btn-outline-primary" value="Sign Out"/>
+    </form>
+</div>
 
-<div class="row" style="margin-left: 3em; margin-right: 3em">
+<div class="row" style="margin-left: 3em; margin-right: 3em" sec:authorize="isAuthenticated()">
     <div class="col">
         <form ng-submit="updateRent()">
             <h2 align="center">Изменение квартиры</h2>
@@ -84,7 +90,7 @@
             <td>{{rent.address}}</td>
             <td>{{rent.cost}}</td>
             <td>{{rent.status}}</td>
-            <td><input type="button" class="btn btn-danger" value="Удалить" ng-click="deleteRent(rent.id)"/></td>
+            <td sec:authorize="isAuthenticated()"><input type="button" class="btn btn-danger" value="Удалить" ng-click="deleteRent(rent.id)"/></td>
         </tr>
         </tbody>
     </table>
