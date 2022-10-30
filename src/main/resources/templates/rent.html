@@ -16,13 +16,36 @@
     <script src="/js/jquery-1.9.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/angular-1.7.5.min.js"></script>
-    <script src="/js/schools.js"></script>
+    <script src="/js/rent.js"></script>
 
 </head>
 <body ng-app="rents" ng-controller="RentController">
 <h1 align="center">Аренда квартир</h1> <br>
 
-<div class="col">
+<div class="row" style="margin-left: 3em; margin-right: 3em">
+    <div class="col">
+        <form ng-submit="updateRent()">
+            <h2 align="center">Изменение квартиры</h2>
+            <div class="form-group" align="center">
+                <input type="number" class="form-control" ng-model="updatedId" name="flat_id" placeholder="Введите id квартиры">
+            </div>
+            <div class="form-group" align="center">
+                <input type="text" class="form-control" ng-model="updatedAddress" name="address" placeholder="Введите адрес квартиры">
+            </div>
+            <div class="form-group" align="center">
+                <input type="number" class="form-control" ng-model="updatedCost" name="cost" placeholder="Введите стоимость квартиры">
+            </div>
+            <div class="form-group">
+                <select name="status" ng-model="updatedStatus"  class="form-control">
+                    <option selected>Свободна</option>
+                    <option>Арендована</option>
+                </select>
+            </div>
+            <div class="form-group" align="center">
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </div>
+        </form>
+    </div>
     <form role="form" ng-submit="addRent()">
         <h2 align="center">Добавление квартиры</h2>
         <div class="form-group">
@@ -42,8 +65,9 @@
         </div>
     </form>
 </div>
-<div ng-controller="getRents" ng-show="rentList.length > 0">
-    <table id="schoolsTable" class="container">
+</div>
+<div ng-controller="getRents" ng-show="rentsList.length > 0">
+    <table id="rentsTable" class="container">
         <thead>
         <tr>
         <tr>
@@ -52,16 +76,15 @@
             <th scope="col">Стоимость</th>
             <th scope="col">Статус</th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="rent in rentList" id="{{rent.id}}">
+        <tr ng-repeat="rent in rentsList" id="{{rent.id}}">
+            <td>{{rent.id}}</td>
             <td>{{rent.address}}</td>
             <td>{{rent.cost}}</td>
             <td>{{rent.status}}</td>
-            <td><!--<input type="button" value="Редактировать"/>--></td>
-            <td><input type="button" class="btn btn-danger" value="Удалить" ng-click="deleteSchool(school.id)"/></td>
+            <td><input type="button" class="btn btn-danger" value="Удалить" ng-click="deleteRent(rent.id)"/></td>
         </tr>
         </tbody>
     </table>

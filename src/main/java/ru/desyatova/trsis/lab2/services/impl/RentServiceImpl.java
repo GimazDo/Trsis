@@ -29,7 +29,7 @@ public class RentServiceImpl implements RentService {
         return rents;
     }
 
-    public void add(Rent rent) {
+    public Rent add(Rent rent) {
         if (rents.stream().anyMatch(r -> r.getId().equals(rent.getId())))
             throw new DuplicateRentException(String.format(ALREADY_EXISTS, rent.getId()));
         if (rent.getId() == null) {
@@ -39,6 +39,7 @@ public class RentServiceImpl implements RentService {
             rent.setId(nextId);
         }
         rents.add(rent);
+        return rent;
     }
 
     public void delete(Long id) {
@@ -46,12 +47,12 @@ public class RentServiceImpl implements RentService {
         rents.remove(rent);
     }
 
-    public void update(Rent rent) {
+    public Rent update(Rent rent) {
         Rent oldRent =getById(rent.getId());
         oldRent.setCost(rent.getCost());
         oldRent.setAddress(rent.getAddress());
         oldRent.setStatus(rent.getStatus());
-
+        return oldRent;
     }
 
     public Rent getById(Long id) {

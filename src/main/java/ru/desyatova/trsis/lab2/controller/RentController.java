@@ -30,15 +30,15 @@ public class RentController {
     }
 
     @PostMapping
-    public void add(@RequestParam String address, @RequestParam BigDecimal cost, @RequestParam String status) {
+    public Rent add(@RequestParam String address, @RequestParam BigDecimal cost, @RequestParam String status) {
         Rent rent = new Rent(null, address, cost, RentStatus.getByDescription(status));
-        rentServiceImpl.add(rent);
+        return rentServiceImpl.add(rent);
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable Long id, @RequestBody Rent rent) {
+    public Rent update(@PathVariable Long id, @RequestBody Rent rent) {
         if (!id.equals(rent.getId())) throw new IllegalArgumentException("Id в пути не совпадает с id в теле");
-        rentServiceImpl.update(rent);
+        return rentServiceImpl.update(rent);
     }
 
     @GetMapping("{id}")
@@ -52,9 +52,9 @@ public class RentController {
     }
 
     @PostMapping("{id}")
-    public void addWithID(@PathVariable Long id, @RequestBody Rent rent) {
+    public Rent addWithID(@PathVariable Long id, @RequestBody Rent rent) {
         if (!id.equals(rent.getId())) throw new IllegalArgumentException("Id в пути не совпадает с id в теле");
-        rentServiceImpl.add(rent);
+        return rentServiceImpl.add(rent);
     }
 
     @ExceptionHandler({NotFoundException.class})
