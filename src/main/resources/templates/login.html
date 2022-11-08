@@ -18,10 +18,10 @@
             <div class="login-form">
                 <div class="main-div">
                     <div class="panel">
-                        <h2 class="form-heading">Our University Database</h2>
-                        <p>Please enter your login and password</p>                              
+                        <h2 class="form-heading">Здравствуйте!:)</h2>
+                        <p>Пожалуйста введите логин и пароль</p>
                         <div th:if="${param.error}"  class="alert alert-danger">Unknown username or password.</div>
-                        <div  th:if="${param.logout}" class="alert alert-success">Good bye!</div>
+                        <div  th:if="${param.logout}" class="alert alert-success">Пока:0</div>
                     </div>
                     <form id="Login" th:action="@{/login}" method="post">
                         <div class="form-group">
