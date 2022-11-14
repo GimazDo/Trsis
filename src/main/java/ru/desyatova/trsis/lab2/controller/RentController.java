@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.desyatova.trsis.lab2.exceptions.ForbiddenException;
+import ru.desyatova.trsis.lab2.repository.RentRepository;
 import ru.desyatova.trsis.lab2.services.impl.RentServiceImpl;
 import ru.desyatova.trsis.lab2.entity.Rent;
 import ru.desyatova.trsis.lab2.enums.RentStatus;
