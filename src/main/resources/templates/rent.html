@@ -35,7 +35,7 @@
             </ul>
             <a sec:authorize="isAnonymous()" class="d-flex btn btn-outline-success" href="/login" th:text="#{sign_in}"></a>
             <form sec:authorize="isAuthenticated()" name="logoutForm" th:action="@{/logout}" method="post">
-                <input type="submit"  class="d-flex btn btn-outline-success" th:text="#{sign_out}"/>
+                <input type="submit"  class="d-flex btn btn-outline-success" th:value="#{sign_out}"/>
             </form>
         </div>
     </div>
@@ -44,43 +44,43 @@
 <div class="row" style="margin-left: 3em; margin-right: 3em" sec:authorize="isAuthenticated()">
     <div class="col">
         <form ng-submit="updateRent()">
-            <h2 align="center">Изменение квартиры</h2>
+            <h2 align="center" th:text="#{changeappatment}"></h2>
             <div class="form-group" align="center">
-                <input type="number" class="form-control" ng-model="updatedId" name="flat_id" placeholder="Введите id квартиры">
+                <input type="number" class="form-control" ng-model="updatedId" name="flat_id" th:placeholder="#{enterid}">
             </div>
             <div class="form-group" align="center">
-                <input type="text" class="form-control" ng-model="updatedAddress" name="address" placeholder="Введите адрес квартиры">
+                <input type="text" class="form-control" ng-model="updatedAddress" name="address" th:placeholder="#{enteradress}">
             </div>
             <div class="form-group" align="center">
-                <input type="number" class="form-control" ng-model="updatedCost" name="cost" placeholder="Введите стоимость квартиры">
+                <input type="number" class="form-control" ng-model="updatedCost" name="cost" th:placeholder="#{entercost}">
             </div>
             <div class="form-group">
                 <select name="status" ng-model="updatedStatus"  class="form-control">
                     <option selected>Свободна</option>
-                    <option>Арендована</option>
+                    <option >Арендована</option>
                 </select>
             </div>
             <div class="form-group" align="center">
-                <button type="submit" class="btn btn-primary">Изменить</button>
+                <button type="submit" class="btn btn-primary" th:text="#{changebtn}"></button>
             </div>
         </form>
     </div>
     <form role="form" ng-submit="addRent()">
-        <h2 align="center">Добавление квартиры</h2>
+        <h2 align="center"th:text="#{addrent}"></h2>
         <div class="form-group">
-            <input type="text" class="form-control" ng-model="address" name="address" id="address" placeholder="Введите адрес квартиры">
+            <input type="text" class="form-control" ng-model="address" name="address" id="address" th:placeholder="#{enteradress}">
         </div>
         <div class="form-group">
-            <input type="number" class="form-control" ng-model="cost" name="cost" id="cost" placeholder="Введите стоимость квартиры">
+            <input type="number" class="form-control" ng-model="cost" name="cost" id="cost" th:placeholder="#{entercost}">
         </div>
         <div class="form-group">
             <select name="status" class="form-control" id="status" ng-model="status">
                 <option selected>Свободна</option>
-                <option>Арендована</option>
+                <option >Арендована</option>
             </select>
         </div>
         <div class="form-group" align="center">
-            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button type="submit" class="btn btn-primary" th:text="#{addbtn}"></button>
         </div>
     </form>
 </div>
@@ -103,7 +103,7 @@
             <td>{{rent.address}}</td>
             <td>{{rent.cost}}</td>
             <td>{{rent.status}}</td>
-            <td sec:authorize="isAuthenticated()"><input type="button" class="btn btn-danger" value="Удалить" ng-click="deleteRent(rent.id)"/></td>
+            <td sec:authorize="isAuthenticated()"><input type="button" class="btn btn-danger" th:value="#{delbtn}" ng-click="deleteRent(rent.id)"/></td>
         </tr>
         </tbody>
     </table>
