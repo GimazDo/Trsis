@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+        <link href="css/login.css" rel="stylesheet"></link>
+
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular-1.7.5.min.js"></script>        
+    </head>
+    <body>
+        <div class="container">
+            <div class="starter-template">
+                <h1 th:text="#{error403}"></h1>
+                <div th:inline="text" th:text="#{hellofriend}"></div>
+                <div><a th:href='/' th:text="#{returnehome}"></a></div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </body>
+</html>
