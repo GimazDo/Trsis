@@ -9,9 +9,10 @@ import ru.desyatova.trsis.lab2.entity.RentLog;
 @RequiredArgsConstructor
 @Service
 public class RentProducer {
-    private final KafkaTemplate<Long, RentLog> kafkaTemplate;
+    private final KafkaTemplate<String, RentLog> kafkaTemplate;
 
     public void send(RentLog rentLog) {
-        kafkaTemplate.send("rent", rentLog);
+
+        kafkaTemplate.send("rentLog", rentLog);
     }
 }
